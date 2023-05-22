@@ -30,7 +30,7 @@ const App = () => {
             value={rating}
             onChange={handleRatingChange}
           />
-          <span className='rating'>rating</span>
+          <span className='rating' >{rating}</span>
         </div>
         <div>
           <label htmlFor='comment'>Comment: </label>
