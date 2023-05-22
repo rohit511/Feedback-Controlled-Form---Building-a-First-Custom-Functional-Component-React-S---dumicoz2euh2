@@ -6,9 +6,20 @@ const App = () => {
   const [comment, setComment] = useState();
   const [commentError, setCommentError] = useState();
 
+
+  const handleRatingChange=(event)=>{
+    setRating(event.target.value);
+  }
+  const handleCommentChange=(event)=>{
+    setComment(event.target.value);
+    setCommentError(event.target.value.length<=5)
+  }
+  const handeleSumit=(event)=>{
+    event.preventDefault();
+  }
   return (
     <div id="main">
-      <form>
+      <form onSubmit={handeleSumit}>
         <div>
           <label htmlFor='rating'>Rating: </label>
           <input 
@@ -16,6 +27,8 @@ const App = () => {
             min="1"
             max="10"
             id="rating"
+            value={rating}
+            onChange={handleRatingChange}
           />
           <span className='rating'>rating</span>
         </div>
@@ -23,8 +36,10 @@ const App = () => {
           <label htmlFor='comment'>Comment: </label>
           <textarea 
             id='comment'
+            value={comment}
+            onChange={handleCommentChange}
           />
-          <p style={{ color: 'red' }} className="comment-error">Comment must be atleast 5 characters.</p>
+         {commentError &&  <p style={{ color: 'red' }} className="comment-error">Comment must be atleast 5 characters.</p>}
         </div>
         <button type='submit'>Submit</button>
       </form>
